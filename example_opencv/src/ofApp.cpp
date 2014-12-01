@@ -1,20 +1,19 @@
-#include "testApp.h"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp::setup(){
 	browser.setup(ofGetWidth(), ofGetHeight());
 	
 	moustache.loadImage("moustache.png");
-	//browser.loadURL("https://www.google.com/search?q=faces");
-	browser.loadURL("https://www.google.com/search?q=moustache+competition");
+	browser.loadURL("https://www.google.com/search?q=faces");
+	//browser.loadURL("https://www.google.com/search?q=moustache+competition");
 	
 	finder.setup("haarcascade_frontalface_default.xml");
 	scale.set(0.25, 0.25);
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
-	
+void ofApp::update(){
 	ofSetWindowTitle(ofToString(ofGetFrameRate())+"fps");
 	ofxAwesomium::updateCore();
 	bool bIsFrameNew = browser.update();
@@ -31,7 +30,7 @@ void testApp::update(){
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp::draw(){
 	if(browser.getIsLoading()) {
 		ofSetColor(0);
 		ofDrawBitmapString("Loading...", 10, 15);
@@ -56,47 +55,46 @@ void testApp::draw(){
 }
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp::keyPressed(int key){
 	browser.keyPressed(key);
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp::keyReleased(int key){
 	browser.keyReleased(key);
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ofApp::mouseMoved(int x, int y ){
 	browser.mouseMoved(x, y);
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp::mouseDragged(int x, int y, int button){
 	browser.mouseDragged(x, y, button);
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp::mousePressed(int x, int y, int button){
 	browser.mousePressed(x, y, button);
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp::mouseReleased(int x, int y, int button){
 	browser.mouseReleased(x, y, button);
 }
 
-
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp::windowResized(int w, int h){
 
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
+void ofApp::gotMessage(ofMessage msg){
 
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
 }

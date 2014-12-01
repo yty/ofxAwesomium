@@ -2,9 +2,8 @@
 
 #include "ofMain.h"
 #include "ofxAwesomium.h"
-#include "ofxOpenCv.h"
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp{
 
 	public:
 		void setup();
@@ -22,8 +21,4 @@ class testApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		
 		ofxAwesomium browser;
-		ofxCvHaarFinder finder;
-		ofImage moustache;
-		ofImage grayFrame;
-		ofPoint scale;
 };

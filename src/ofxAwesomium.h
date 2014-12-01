@@ -32,26 +32,26 @@ public:
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
-	
+	void windowResized(int w, int h);
 	
 	// begin ofBaseDraws
-	void draw(float x, float y);
-	void draw(float x, float y, float w, float h);
-	void draw(const ofPoint & point) {
+	void draw(float x, float y) const;
+	void draw(float x, float y, float w, float h) const;
+	void draw(const ofPoint & point) const {
 		draw(point.x, point.y);
 	}
-	void draw(const ofRectangle & rect) {
+	void draw(const ofRectangle & rect) const {
 		draw(rect.x, rect.y, rect.width, rect.height);
 	}
-	void draw(const ofPoint & point, float w, float h) {
+	void draw(const ofPoint & point, float w, float h) const {
 		draw(point.x, point.y, w, h);
 	}
-	float getHeight();
-	float getWidth();
+	float getHeight() const;
+	float getWidth() const;
 	// end ofBaseDraws
 	
 	ofImage frame;
-
+	bool isResizing;
 	static void initCore(string logsPath, string sessionPath);
 	static void updateCore();
 	static void shutdownCore();

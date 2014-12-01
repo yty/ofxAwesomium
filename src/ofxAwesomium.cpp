@@ -21,6 +21,7 @@ void ofxAwesomium::setup(int width, int height) {
 	web_view = core->CreateWebView(width, height, session);
 	frame.allocate(width, height, OF_IMAGE_COLOR_ALPHA);
     //texture.allocate(width, height, GL_RGBA);
+	isResizing = false;
 }
 
 // ----------------------------------------------------------------
@@ -36,6 +37,7 @@ JSValue ofxAwesomium::doJavaScript(string js) {
 
 // ----------------------------------------------------------------
 bool ofxAwesomium::update() {
+	isResizing = false;
     surface = (BitmapSurface*)web_view->surface();
     
     if(surface && surface->buffer() && surface->is_dirty()) {
@@ -49,22 +51,26 @@ bool ofxAwesomium::update() {
 }
 
 // ----------------------------------------------------------------
-void ofxAwesomium::draw(float x, float y) {
-	frame.draw(x, y);
+void ofxAwesomium::draw(float x, float y) const {
+	if (isResizing == false) {
+		frame.draw(x, y);
+	}
 }
 
 // ----------------------------------------------------------------
-void ofxAwesomium::draw(float x, float y, float w, float h) {
-	frame.draw(x, y, w, h);
+void ofxAwesomium::draw(float x, float y, float w, float h) const {
+	if (isResizing == false) {
+		frame.draw(x, y, w, h);
+	}
 }
 
 // ----------------------------------------------------------------
-float ofxAwesomium::getHeight() {
+float ofxAwesomium::getHeight() const {
 	return frame.getHeight();
 }
 
 // ----------------------------------------------------------------
-float ofxAwesomium::getWidth() {
+float ofxAwesomium::getWidth() const {
 	return frame.getWidth();
 }
 
@@ -147,7 +153,13 @@ void ofxAwesomium::mouseReleased(int x, int y, int button){
         web_view->InjectMouseUp( Awesomium::kMouseButton_Right );
 }
 
-
+void ofxAwesomium::windowResized(int w, int h){
+	isResizing = true;
+	frame.allocate(w, h, OF_IMAGE_COLOR_ALPHA);
+	
+	web_view->Resize(w, h);
+	core->Update();
+}
 
 
 
