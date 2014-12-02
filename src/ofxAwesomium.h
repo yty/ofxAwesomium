@@ -32,8 +32,10 @@ public:
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
+	void mouseScrolled(int x,int y);
 	void windowResized(int w, int h);
 	
+	void injectKey(int keyCode);
 	// begin ofBaseDraws
 	void draw(float x, float y) const;
 	void draw(float x, float y, float w, float h) const;
@@ -56,9 +58,11 @@ public:
 	static void updateCore();
 	static void shutdownCore();
 	
+	WebView* web_view;
+
 protected:
 	
-	WebView* web_view;
+	
 	BitmapSurface* surface;
 	
 
